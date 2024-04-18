@@ -1,0 +1,19 @@
+@DistantionEducationWebApi_HostAddress = http://localhost:5046
+
+POST {{DistantionEducationWebApi_HostAddress}}/studentworks/create
+Accept: application/json
+
+###
+
+GET {{DistantionEducationWebApi_HostAddress}}/studentworks/get
+Accept: application/json
+
+###
+
+GET {{DistantionEducationWebApi_HostAddress}}/studentworks/get/{id}
+Accept: application/json
+
+###
+
+GET {{DistantionEducationWebApi_HostAddress}}/check/{id}
+Accept: application/json
