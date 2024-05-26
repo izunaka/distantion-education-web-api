@@ -1,8 +1,8 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-COPY requirements.txt .
+COPY requirements1.txt .
 RUN apt-get update -y
-RUN apt-get install python3-pip python3-full -y
-RUN pip install --user -r requirements.txt --break-system-packages
+RUN apt-get install python3-pip python3 -y
+RUN pip install --user -r requirements1.txt --break-system-packages
 RUN python3 -m nltk.downloader stopwords
 COPY ./TextAnalisys /TextAnalisys
 WORKDIR /app

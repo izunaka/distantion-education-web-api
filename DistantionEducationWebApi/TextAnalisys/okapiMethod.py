@@ -1,8 +1,10 @@
 
 from textPreprocessingUtils import processText, correlativeProcessTexts, getVectorsCos, postprocessTexts, getInputParams
 from functools import reduce
-from math import log, log2
+from math import log2
 import sys, json
+
+k = 1.25; b = 0.75
 
 class Object:
     def toJSON(self):
@@ -26,10 +28,12 @@ def mapping(text1, text2, params):
     text1Vector = []; text2Vector = []
 
     for token in allTokens:
-        tf1 = (tokens1[token] if token in tokens1.keys() else 0) / text1Length
-        tf2 = (tokens2[token] if token in tokens2.keys() else 0) / text2Length
+        f1 = (tokens1[token] if token in tokens1.keys() else 0)
+        f2 = (tokens2[token] if token in tokens2.keys() else 0)
+        tf1 = f1 * (k + 1) / (text1Length + k * (1 - b + b * (text1Length * len(params.texts)) / reduce(lambda acc, text: acc + len(text), params.texts, 0))
+        tf2 = f2 * (k + 1) / (text2Length + k * (1 - b + b * (text1Length * len(params.texts)) / reduce(lambda acc, text: acc + len(text), params.texts, 0))
         ft = reduce(lambda acc, text: acc + (1 if token in text else 0), params.texts, 0)
-        idf = log2(len(params.texts) / (ft + 1))
+        idf = (len(params.texts) - ft + 0.5) / (ft + 0.5) + 1
         text1Vector.append(tf1 * idf)
         text2Vector.append(tf2 * idf)
 

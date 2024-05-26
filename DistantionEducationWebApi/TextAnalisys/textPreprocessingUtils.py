@@ -107,7 +107,7 @@ def getInputParams(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument('-t1', '--text1', default='', type=str)
     parser.add_argument('-t2', '--text2', default='', type=str)
-    parser.add_argument('-s', '--synonyms', default=False, type=bool)
+    parser.add_argument('-s', '--synonyms', default=True, type=bool)
     parser.add_argument('-m', '--maxfine', default=0, type=float)
     parser.add_argument('-f', '--frequency', default=False, type=bool)
     return parser.parse_args(argv[1:])

@@ -30,7 +30,7 @@ def mapping(text1, text2, params):
         tokens2 = processText(text2)
 
     result = Object()
-    result.similarity = score
+    result.similarity = (score - 0.5) * 2
     result.generalTerminsInFirstText, \
     result.extraTerminsInFirstText, \
     result.generalTerminsInSecondText, \
